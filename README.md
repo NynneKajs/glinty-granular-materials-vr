@@ -28,12 +28,12 @@ _"Description" by NameOfCreator from LinkToAsset_
 - "Texture baking project" by sheha-belkhale from https://github.com/sneha-belkhale/shader-bake-unity 
 - "Ripples approach" by Alan Zucconi from https://www.alanzucconi.com/2019/10/08/journey-sand-shader-6/ 
 - "Voronoi noise generation" by Ronja's tutorials from https://www.ronja-tutorials.com/post/028-voronoi-noise/
-- 
 
 ### Textures
 
 - "Sand details normal textures" by AtwoodDeng from https://github.com/AtwoodDeng/JourneySand/tree/master/Assets/SandRendering/Image
 - "Moon texture" by EntityNull0 from https://github.com/EntityNULL0/TimeOfDay/blob/master/Assets/Textures/moon.jpg
+- "Stars texture" by Ernie Wright (Nasa Scientific Visualization Studio) from https://svs.gsfc.nasa.gov/4851
 
 ### Other
 
