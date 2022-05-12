@@ -1,11 +1,11 @@
 # Real-Time Rendering of Sand in Virtual Reality
-Code repository for the project 'Real-Time Rendering of Sand in Virtual Reality'
-
 
 ## Description
 
-% what is it
-% link to article
+This repository contains the code behind the project for _Real-Time Rendering of Sand in Virtual Reality_. 
+The article describing the project can be found [here](https://www.google.com/webhp?hl=da&sa=X&ved=0ahUKEwja-9SS5tn3AhVxSvEDHbrrB04QPAgI). 
+The project is implemented in Unity version 2021.2.15f1.
+The demo (demo.exe) has been developed for Oculus Rift S and has not been tested for other versions. 
 
 ## How to use this project
 
@@ -16,7 +16,7 @@ Code repository for the project 'Real-Time Rendering of Sand in Virtual Reality'
 Below are listed the assets used in the project. 
 Assets are listed as 
 
-"Description" by NameOfCreator from LinkToAsset
+_"Description" by NameOfCreator from LinkToAsset_
 
 ## 3D Models
 
@@ -27,6 +27,8 @@ Assets are listed as
 
 - "Texture baking project" by sheha-belkhale from https://github.com/sneha-belkhale/shader-bake-unity 
 - "Ripples approach" by Alan Zucconi from https://www.alanzucconi.com/2019/10/08/journey-sand-shader-6/ 
+- "Voronoi noise generation" by Ronja's tutorials from https://www.ronja-tutorials.com/post/028-voronoi-noise/
+- 
 
 ### Textures
 
@@ -36,4 +38,5 @@ Assets are listed as
 ### Other
 
 - "[BTW]Simple Dynamic Clouds" by Butterfly World from https://assetstore.unity.com/packages/tools/particles-effects/bfw-simple-dynamic-clouds-85665#description 
+- "Oculus integration" by Oculus from https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022#description
 
