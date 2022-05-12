@@ -18,24 +18,24 @@ Assets are listed as
 
 _"Description" by NameOfCreator from LinkToAsset_
 
-## 3D Models
+#### 3D Models
 
 - "Girl with a book" by matousekfoto from https://sketchfab.com/3d-models/girl-with-a-book-0e6b514aa2ac479db3344f83aa78c939
 - "Low poly sticky notes" by 6amsunset from https://sketchfab.com/3d-models/low-poly-sticky-notes-a528cfc3e30c466cb7cd8e3ea12e8c9b 
 
-### Scripts
+#### Scripts
 
 - "Texture baking project" by sheha-belkhale from https://github.com/sneha-belkhale/shader-bake-unity 
 - "Ripples approach" by Alan Zucconi from https://www.alanzucconi.com/2019/10/08/journey-sand-shader-6/ 
 - "Voronoi noise generation" by Ronja's tutorials from https://www.ronja-tutorials.com/post/028-voronoi-noise/
 
-### Textures
+#### Textures
 
 - "Sand details normal textures" by AtwoodDeng from https://github.com/AtwoodDeng/JourneySand/tree/master/Assets/SandRendering/Image
 - "Moon texture" by EntityNull0 from https://github.com/EntityNULL0/TimeOfDay/blob/master/Assets/Textures/moon.jpg
 - "Stars texture" by Ernie Wright (Nasa Scientific Visualization Studio) from https://svs.gsfc.nasa.gov/4851
 
-### Other
+#### Other
 
 - "[BTW]Simple Dynamic Clouds" by Butterfly World from https://assetstore.unity.com/packages/tools/particles-effects/bfw-simple-dynamic-clouds-85665#description 
 - "Oculus integration" by Oculus from https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022#description
