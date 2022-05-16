@@ -38,6 +38,6 @@ _"Description" by NameOfCreator from LinkToAsset_
 #### Other
 
 - "Day / Night cycle" by Probably Spoonie from https://www.youtube.com/watch?v=m9hj9PdO328
-- "[BTW]Simple Dynamic Clouds" by Butterfly World from https://assetstore.unity.com/packages/tools/particles-effects/bfw-simple-dynamic-clouds-85665#description 
+- "Simple Dynamic Clouds" by Butterfly World from https://assetstore.unity.com/packages/tools/particles-effects/bfw-simple-dynamic-clouds-85665#description 
 - "Oculus integration" by Oculus from https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022#description
 
