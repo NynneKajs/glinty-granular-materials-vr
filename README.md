@@ -26,7 +26,7 @@ _"Description" by NameOfCreator from LinkToAsset_
 #### Scripts
 
 - "Texture baking project" by sheha-belkhale from https://github.com/sneha-belkhale/shader-bake-unity 
-- "Ripples approach" by Alan Zucconi from https://www.alanzucconi.com/2019/10/08/journey-sand-shader-6/ 
+- "Approach for creating ripples" by Alan Zucconi from https://www.alanzucconi.com/2019/10/08/journey-sand-shader-6/ 
 - "Voronoi noise generation" by Ronja's tutorials from https://www.ronja-tutorials.com/post/028-voronoi-noise/
 
 #### Textures
@@ -37,6 +37,7 @@ _"Description" by NameOfCreator from LinkToAsset_
 
 #### Other
 
+- "Day / Night cycle" by Probably Spoonie from https://www.youtube.com/watch?v=m9hj9PdO328
 - "[BTW]Simple Dynamic Clouds" by Butterfly World from https://assetstore.unity.com/packages/tools/particles-effects/bfw-simple-dynamic-clouds-85665#description 
 - "Oculus integration" by Oculus from https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022#description
 
