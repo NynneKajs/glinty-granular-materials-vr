@@ -34,6 +34,7 @@ _"Description" by NameOfCreator from LinkToAsset_
 - "Sand details normal textures" by AtwoodDeng from https://github.com/AtwoodDeng/JourneySand/tree/master/Assets/SandRendering/Image
 - "Moon texture" by EntityNull0 from https://github.com/EntityNULL0/TimeOfDay/blob/master/Assets/Textures/moon.jpg
 - "Stars texture" by Ernie Wright (Nasa Scientific Visualization Studio) from https://svs.gsfc.nasa.gov/4851
+- "Cumbled paper normals" by MAFIAARTIST from https://mafiaartist.wordpress.com/2015/04/28/misc-group-04-uv-unwrap-fix/
 
 #### Other
 
