@@ -40,7 +40,6 @@ _"Description" by NameOfCreator from LinkToAsset_
 #### Shading
 
 - "An analytic BRDF for materials with spherical Lambertian scatterers" by Eugene d'Eon from https://arxiv.org/abs/2103.01618
-- "Building an Orthonormal Basis from a 3D Unit Vector Without Normalization" by Jeppe Revall Frisvad from https://www.tandfonline.com/doi/abs/10.1080/2165347X.2012.689606
 
 #### Other
 
