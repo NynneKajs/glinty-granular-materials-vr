@@ -28,6 +28,7 @@ _"Description" by NameOfCreator from LinkToAsset_
 - "Texture baking project" by sheha-belkhale from https://github.com/sneha-belkhale/shader-bake-unity 
 - "Approach for creating ripples" by Alan Zucconi from https://www.alanzucconi.com/2019/10/08/journey-sand-shader-6/ 
 - "Voronoi noise generation" by Ronja's tutorials from https://www.ronja-tutorials.com/post/028-voronoi-noise/
+- "Implementation of the fast version of "An analytic BRDF for materials with spherical Lambertian scatterers"" by AndrewHelmer from https://www.shadertoy.com/view/ftlXWl 
 
 #### Textures
 
@@ -35,6 +36,11 @@ _"Description" by NameOfCreator from LinkToAsset_
 - "Moon texture" by EntityNull0 from https://github.com/EntityNULL0/TimeOfDay/blob/master/Assets/Textures/moon.jpg
 - "Stars texture" by Ernie Wright (Nasa Scientific Visualization Studio) from https://svs.gsfc.nasa.gov/4851
 - "Cumbled paper normals" by MAFIAARTIST from https://mafiaartist.wordpress.com/2015/04/28/misc-group-04-uv-unwrap-fix/
+
+#### Shading
+
+- "An analytic BRDF for materials with spherical Lambertian scatterers" by Eugene d'Eon from https://arxiv.org/abs/2103.01618
+- "Building an Orthonormal Basis from a 3D Unit Vector Without Normalization" by Jeppe Revall Frisvad from https://www.tandfonline.com/doi/abs/10.1080/2165347X.2012.689606
 
 #### Other
 
