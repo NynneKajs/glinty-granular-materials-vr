@@ -7,7 +7,7 @@ The article describing the project can be found [here](https://www.google.com/we
 The project is implemented in Unity version 2021.2.15f1.
 The demo (demo.exe) has been developed for Oculus Rift S and has not been tested for other versions. 
 
-## How to use this project
+## How to Use this Project
 
 % embed video
 
