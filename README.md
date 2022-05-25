@@ -20,7 +20,7 @@ _"Description" by NameOfCreator from LinkToAsset_
 
 #### 3D Models
 
-- "Girl with a book" by matousekfoto from https://sketchfab.com/3d-models/girl-with-a-book-0e6b514aa2ac479db3344f83aa78c939
+- "Updated Stanford Bunny" by KickAir_8P from https://blenderartists.org/t/uv-unwrapped-stanford-bunny-happy-spring-equinox/1101297 (originally by Stanford University Computer Graphics Laboratory from http://graphics.stanford.edu/data/3Dscanrep/)
 - "Low poly sticky notes" by 6amsunset from https://sketchfab.com/3d-models/low-poly-sticky-notes-a528cfc3e30c466cb7cd8e3ea12e8c9b 
 
 #### Scripts
