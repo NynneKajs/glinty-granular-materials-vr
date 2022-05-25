@@ -120,8 +120,8 @@ Shader "Custom/Sand" {
 		#pragma multi_compile _ENABLE_LAMBERT_OFF _ENABLE_LAMBERT_ON
 		#pragma target 4.0
 		
-		void multiSampledTextures(float2 uv, float3 n_object, float3 n_world, float4 t_world, float3 l, float3 v, out float3 slopes, out float3 colors, out float glintsControls, out float g) {
-			float3 tempSlopes; float3 tempColors; float tempG; float tempGlintsControls; 
+		void multiSampledTextures(float2 uv, float3 n_world, float4 t_world, float3 b_world, float3 l, float3 v, out float3 slopes, out float3 colors, out float g, bool mainLight) {
+			float3 tempSlopes; float3 tempColors; float tempG; float tempGlintsControls;
 			float2 texLookup;
 			float3 microLightReflectDirection;
 			float dx; float dy;
@@ -130,32 +130,42 @@ Shader "Custom/Sand" {
 			// Dimensions should be integers
 			int numDims = _NumDims - (1 - (_NumDims % 2));
 
-			for (int i = -floor(numDims / 2); i < floor(numDims / 2) + 1; i++) {
-				for (int j = -floor(numDims / 2); j < floor(numDims / 2) + 1; j++) {
-					// Find UV sample positions
-					dx = _SampleDistance * i; dy = _SampleDistance * j;
-					texLookup = float2(scaledUV + ddx(scaledUV) * dx + ddy(scaledUV) * dy);
-					tempSlopes = NormalFromTangentTex(texLookup, _SlopeTex, n_world, t_world, 1, float3(-1,1,-1));
+			float gaussianKernel;
+			float divider;
 
-					tempGlintsControls = tex2D(_GlintTex, texLookup).x;
+			// Glints currently only supported for main directional light
+			if (mainLight) {
+				for (int i = -floor(numDims / 2); i < floor(numDims / 2) + 1; i++) {
+					for (int j = -floor(numDims / 2); j < floor(numDims / 2) + 1; j++) {
+						// Find UV sample positions
+						dx = _SampleDistance * i; dy = _SampleDistance * j;
+						texLookup = float2(scaledUV + ddx(scaledUV) * dx + ddy(scaledUV) * dy);
 
-					// New light calculations
-					microLightReflectDirection = normalize(reflect(-l, tempSlopes));
-					tempG = saturate(pow(max(0, dot(microLightReflectDirection, v)), _Gs)) *GDF(tempGlintsControls, _Sigma, _Mu);
+						tempSlopes = NormalFromTangentTex(texLookup, _SlopeTex, n_world, t_world, b_world, 1, float3(-1, 1, -1));
+						tempGlintsControls = tex2D(_GlintTex, texLookup).x;
 
-					// Use gaussian kernel for final result
-					float gaussianKernel = GDF(i / numDims, 0.5, 0) + GDF(j / numDims, 0.5, 0);
-					float divider = gaussianKernel / (pow(numDims, 2));
-					slopes += tempSlopes * divider;
-					glintsControls += tempGlintsControls * divider;
-					g += tempG * divider;
+						// New light calculations
+						microLightReflectDirection = normalize(reflect(-l, tempSlopes));
+						tempG = saturate(pow(max(0, dot(microLightReflectDirection, v)), _Gs)) * GDF(tempGlintsControls, _Sigma, _Mu);
+
+						// Use gaussian kernel for final result
+						gaussianKernel = GDF(i / numDims, 0.5, 0) + GDF(j / numDims, 0.5, 0);
+						divider = gaussianKernel / (pow(numDims, 2));
+						slopes += tempSlopes * divider;
+						g += tempG * divider;
+					}
 				}
+			}
+			else {
+				slopes = NormalFromTangentTex(scaledUV, _SlopeTex, n_world, t_world, b_world, 1, float3(-1, 1, -1));
+				microLightReflectDirection = normalize(reflect(-l, slopes));
+				g = 0;
 			}
 			colors = tex2D(_ColorTex, scaledUV); // Colors do not need to be multi sampled
 		}
 
 		// Uses approach from Alan Zucconi: https://www.alanzucconi.com/2019/10/08/journey-sand-shader-6/
-		float3 GetRipplesNormal(float2 uv, float3 n, float4 t)
+		float3 GetRipplesNormal(float2 uv, float3 n, float4 t, float3 b)
 		{
 			float3 textureInvertion = float3(1, 1, 1);
 			// get the power of xz direction
@@ -171,19 +181,19 @@ Shader "Custom/Sand" {
 			steepness = saturate(pow(steepness, _SteepnessSharpnessPower)); 
 
 			// shallow
-			float3 shallowX = NormalFromTangentTex(uv.xy * _RipplesShallowFrequency, _ShallowX, n, t, _RipplesStrength, textureInvertion);
-			float3 shallowZ = NormalFromTangentTex(uv.xy * _RipplesShallowFrequency, _ShallowZ, n, t, _RipplesStrength, textureInvertion);
+			float3 shallowX = NormalFromTangentTex(uv.xy * _RipplesShallowFrequency, _ShallowX, n, t, b, _RipplesStrength, textureInvertion);
+			float3 shallowZ = NormalFromTangentTex(uv.xy * _RipplesShallowFrequency, _ShallowZ, n, t, b, _RipplesStrength, textureInvertion);
 			float3 shallow = shallowX * shallowZ;
 
 			// steep
-			float3 steepX = NormalFromTangentTex(uv.xy * _RipplesSteepFrequency, _SteepX, n, t, _RipplesStrength, textureInvertion);
-			float3 steepZ = NormalFromTangentTex(uv.xy * _RipplesSteepFrequency, _SteepZ, n, t, _RipplesStrength, textureInvertion);
+			float3 steepX = NormalFromTangentTex(uv.xy * _RipplesSteepFrequency, _SteepX, n, t, b, _RipplesStrength, textureInvertion);
+			float3 steepZ = NormalFromTangentTex(uv.xy * _RipplesSteepFrequency, _SteepZ, n, t, b, _RipplesStrength, textureInvertion);
 			float3 steep = lerp(steepZ, steepX, xRate);
 
 			return normalize(lerp(shallow, steep, steepness));
 		} 
 
-		float4 SandShade(float2 uv, float3 pos_object, float3 pos_world, float3 normal_object, float3 normal_world, float4 tangent_object, float4 tangent_world, float atten)
+		float4 SandShade(float2 uv, float3 pos_object, float3 pos_world, float3 normal_world, float4 tangent_world, float atten, bool mainLight)
 		{
 			float3 camPos =  _WorldSpaceCameraPos.xyz;
 
@@ -218,17 +228,20 @@ Shader "Custom/Sand" {
 			float3 lightDirection = normalize(lerp(_WorldSpaceLightPos0.xyz, _WorldSpaceLightPos0.xyz - pos_world.xyz, _WorldSpaceLightPos0.w));
 			float3 macroNormalDirection = normal_world;
 
+			// binormal 
+			float3 binormal_world = cross(normal_world, tangent_world.xyz) * tangent_world.w;
+
 			#ifdef _ENABLE_DUNESRIPPLES_ON
-				macroNormalDirection = GetRipplesNormal(uv, macroNormalDirection, tangent_world);
+				macroNormalDirection = GetRipplesNormal(uv, macroNormalDirection, tangent_world, binormal_world);
 			#endif
 			#ifdef _ENABLE_SANDDETAILS_ON
-				macroNormalDirection = NormalFromTangentTex(uv * _SandDetailsFrequency, _SandDetails, macroNormalDirection, tangent_world, _DetailsStrength, float3(1,1,1));
+				macroNormalDirection = NormalFromTangentTex(uv * _SandDetailsFrequency, _SandDetails, macroNormalDirection, tangent_world, binormal_world, _DetailsStrength, float3(1,1,1));
 			#endif
 
 			// Textures sampling
-			float3 slopes; float3 colors; float glintsControls; float tempGlints;
+			float3 slopes; float3 colors; float glints;
 			float2 texLookup = -uv;
-			multiSampledTextures(texLookup, normal_object, normal_world, tangent_world, lightDirection, viewDirection, slopes, colors, glintsControls, tempGlints);
+			multiSampledTextures(texLookup, normal_world, tangent_world, binormal_world, lightDirection, viewDirection, slopes, colors, glints, mainLight);
 
 			// Normal and light calculations based on sampled textures
 			float3 microNormalDirection = slopes;
@@ -254,12 +267,12 @@ Shader "Custom/Sand" {
 			float3 Kd_m = rho_m / PI;
 			float3 Kd_n = rho_n / PI;
 			float3 fresnelColor = skyLight + (lightColor * cosine_theta);
-			float3 glintsColor = lightColor * 500; // Glints are multiplied by large value
+			float3 glintsColor = lightColor * 3000; // Glints are multiplied by large value
 			float3 transmissionColor = lightColor * rho_n;
 
 			// GLINTS
 			#ifdef _ENABLE_GLINTS_ON
-				g = tempGlints; // sampled glints
+				g = glints; // sampled glints
 				g *= cosine_theta; // only in direct light
 				g *= shadow; // not if shadowed
 				#ifdef _ENABLE_SHOWGDF_ON
@@ -404,7 +417,7 @@ Shader "Custom/Sand" {
 		
 		float4 frag(VertexOutput i) : COLOR
 		{
-			return SandShade(i.uv0, i.objectPos, i.worldPos, i.normalObject, i.normalWorld, i.tangentObject, i.tangentWorld, LIGHT_ATTENUATION(i));
+			return SandShade(i.uv0, i.objectPos, i.worldPos, i.normalWorld, i.tangentWorld, LIGHT_ATTENUATION(i), true);
 		}
 
 		ENDCG
@@ -460,7 +473,7 @@ Shader "Custom/Sand" {
 				//--------------------------
 				float4 frag(VertexOutput i) : COLOR
 				{
-					return SandShade(i.uv0, i.objectPos, i.worldPos, i.normalObject, i.normalWorld, i.tangentObject, i.tangentWorld, LIGHT_ATTENUATION(i));
+					return SandShade(i.uv0, i.objectPos, i.worldPos, i.normalWorld, i.tangentWorld, LIGHT_ATTENUATION(i), false);
 				}
 			ENDCG
 		}

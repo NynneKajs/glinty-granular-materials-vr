@@ -96,6 +96,9 @@ float3 LambertSphere(float3 wo, float3 wi, float3 norm) {
 	float uo = max(0, dot(wo, norm));
 	float ui = max(0, dot(wi, norm));
 
+	if (uo <= 0 || ui <= 0)
+		return  Lambert(wi, norm); // Handles issues with shader at specific light and viewing angles*/
+
 	float uo2 = uo * uo;
 	float ui2 = ui * ui;
 	float S = sqrt((1.0 - uo2) * (1.0 - ui2));
