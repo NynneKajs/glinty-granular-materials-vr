@@ -78,7 +78,7 @@ Material:
     - _ENABLE_SSS: 1
     - _ENABLE_TRANSMISSION: 1
     - _ENABLE_VR: 0
-    - _Gs: 100
+    - _Gs: 10.4
     - _Height: 1
     - _Mu: 2
     - _NoiseScale: 6
@@ -91,7 +91,7 @@ Material:
     - _SSS: 0.733
     - _SampleDistance: 0.196
     - _SandDetailsFrequency: 0.8
-    - _Sigma: 0.4
+    - _Sigma: 0.305
     - _SteepnessSharpnessPower: 0.001
     - _T: 0.045
     - _a: 2.7

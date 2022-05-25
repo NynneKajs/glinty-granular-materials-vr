@@ -49,14 +49,11 @@ float smootherstep(float edge0, float edge1, float x)
 }
 
 // Based on approach by Jasper Flick (https://catlikecoding.com/unity/tutorials/rendering/part-6/Rendering-6.pdf)
-float3 NormalFromTangentTex(float2 uv, sampler2D tex, float3 n, float4 t, float strength, float3 invert)
+float3 NormalFromTangentTex(float2 uv, sampler2D tex, float3 n, float4 t, float3 b, float strength, float3 invert)
 {
 	float3 textureNormal = UnpackNormal(tex2D(tex, uv));
 	textureNormal = textureNormal.xzy;
-	textureNormal.x *= invert.x;
-	textureNormal.y *= invert.y;
-	textureNormal.z *= invert.z;
-	float3 b = cross(n, t.xyz) * t.w;
+	textureNormal *= invert;
 	textureNormal = normalize(
 		textureNormal.x * t +
 		textureNormal.y * n +
