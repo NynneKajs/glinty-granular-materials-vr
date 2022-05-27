@@ -1,4 +1,4 @@
-# Real-Time Rendering of Sand in Virtual Reality
+# Rendering Glinty Granular Materials in Virtual Reality
 
 ## Description
 
