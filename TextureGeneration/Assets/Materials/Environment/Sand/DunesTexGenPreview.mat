@@ -28,6 +28,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: fa747f082fd77244386be95a30af7b25, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _GlintMipTex:
+        m_Texture: {fileID: 2800000, guid: cbfea004b6b2bd94c8840975e5cf1e4e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _GlintTex:
         m_Texture: {fileID: 2800000, guid: a97d81137a176c44c86017acda98384d, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -74,27 +78,28 @@ Material:
     - _ENABLE_SANDDETAILS: 1
     - _ENABLE_SHOWGDF: 0
     - _ENABLE_SHOWMICRO: 0
+    - _ENABLE_SHOWMIPLEVEL: 0
     - _ENABLE_SPECULAR: 1
     - _ENABLE_SSS: 1
     - _ENABLE_TRANSMISSION: 1
     - _ENABLE_VR: 0
-    - _Gs: 100
+    - _Gs: 10.4
     - _Height: 1
     - _Mu: 2
-    - _NoiseScale: 2000
-    - _NumDims: 5
+    - _NoiseScale: 2500
+    - _NumDims: 3
     - _RipplesShallowFrequency: 766
     - _RipplesSteepFrequency: 200
-    - _RipplesStrength: 0.128
+    - _RipplesStrength: 0.133
     - _Rs: 0.849
     - _Rt: 0
     - _SSS: 0.733
-    - _SampleDistance: 0.196
+    - _SampleDistance: 0.305
     - _SandDetailsFrequency: 0.8
-    - _Sigma: 0.4
+    - _Sigma: 0.238
     - _SteepnessSharpnessPower: 0.001
     - _T: 0.045
-    - _a: 2
+    - _a: 1.5
     - _absorption: 0.1
     - _b: 0
     - _scattering: 0.075

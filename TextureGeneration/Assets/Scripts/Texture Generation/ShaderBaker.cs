@@ -28,6 +28,7 @@ public class ShaderBaker : MonoBehaviour
         capture = false;
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("Generating new sand texture...");
             capture = true; 
         }
     }

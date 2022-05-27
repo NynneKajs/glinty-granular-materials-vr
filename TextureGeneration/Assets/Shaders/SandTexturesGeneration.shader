@@ -5,11 +5,11 @@
 
 	[HideInInspector] _Jitter("Jitter for Noise", Range(0.44, 1.44)) = 1.44
 	[Header(Noise)]
-	_Amp("Protrusion of Grains", Range(0,1)) = 1
-	_RoundAmp("Roundness of Grains", Range(0,1)) = 0.282
+
+	[IntRange] _Layers("Number of Layers", Range(0,15)) = 10
 	_Thresh("Distance between Grains", Range(0,1)) = 0.3
+	_RoundAmp("Roundness of Grains", Range(0,1)) = 0.28
 	_Seed("Random Seed", Range(0, 1)) = 0
-	[IntRange] _Layers("Number of Layers", Range(0,15)) = 10 
 
 
 	[Header(Colors)]
@@ -86,7 +86,6 @@
 			float _LayerDarkness;
 
 			// Noise Variables
-			float _Amp;
 			float _RoundAmp;
 			int _Layers;
 			float _Thresh;
@@ -154,15 +153,15 @@
 			{
 				int octaves = 1;
 				float amp = _RoundAmp * 10;
-				float2 F = voronoiNoise(p, _Period, _Jitter).xy* amp;
+				float2 F = voronoiNoise(p, _Period, _Jitter).xy * amp;
 				float sum = 0.1 + sqrt(F[0]);
 				return sum;
 			}
 
 			float fBm_F1_F0(float3 p)
 			{
-				float amp = _Amp * 0.8;
-				float2 F = voronoiNoise(p, _Period, _Jitter).xy* amp;
+				float amp = 0.64;
+				float2 F = voronoiNoise(p, _Period, _Jitter).xy * amp;
 				float sum = 0.1 + sqrt(F[1]) - sqrt(F[0]);
 				return sum;
 			}

@@ -5,6 +5,7 @@ Shader "Custom/Sand" {
 	_SlopeTex("Slopes Texture", 2D) = "white" {}
 	_ColorTex("Colors Texture", 2D) = "white" {}
 	_GlintTex("Glints Texture", 2D) = "white" {}
+	_GlintMipTex("Glints Mip Levels Texture", 2D) = "white" {}
 	_AverageColorTex("Average Color", 2D) = "white" {}
 	_Height("Height Scale", Range(0.5,200)) = 1
 	_SteepX("Steep X", 2D) = "bump" {}
@@ -48,7 +49,8 @@ Shader "Custom/Sand" {
 	[Toggle] _ENABLE_FARONLY("Only Show Lfar", Float) = 0
 	[Toggle] _ENABLE_SHOWMICRO("Show Micro Normals", Float) = 0
 	[Toggle] _ENABLE_DEBUGDISTANCE("Show Sig Function Outputs", Float) = 0
-	[Toggle] _ENABLE_SHOWGDF("Show Glints GDF Output", Float) = 0
+	[Toggle] _ENABLE_SHOWGDF("Show Glints Output", Float) = 0
+	[Toggle] _ENABLE_SHOWMIPLEVEL("Show Mip Levels", Float) = 0
 	[Toggle] _ENABLE_DUNESRIPPLES("Enable Ripples For Dunes", Float) = 1
 	[Toggle] _ENABLE_SANDDETAILS("Enable Sand Details", Float) = 1
 	[Toggle] _ENABLE_LAMBERT("Simple Lambertian Shading", Float) = 1
@@ -61,6 +63,7 @@ Shader "Custom/Sand" {
 		sampler2D _SlopeTex;
 		sampler2D _ColorTex;
 		sampler2D _GlintTex;
+		sampler2D _GlintMipTex;
 		sampler2D _AverageColorTex;
 		sampler2D _ShallowX;
 		sampler2D _SteepX;
@@ -115,6 +118,7 @@ Shader "Custom/Sand" {
 		#pragma multi_compile _ENABLE_SHOWMICRO_OFF _ENABLE_SHOWMICRO_ON
 		#pragma multi_compile _ENABLE_DEBUGDISTANCE_OFF _ENABLE_DEBUGDISTANCE_ON
 		#pragma multi_compile _ENABLE_SHOWGDF_OFF _ENABLE_SHOWGDF_ON
+		#pragma multi_compile _ENABLE_SHOWMIPLEVEL_OFF _ENABLE_SHOWMIPLEVEL_ON
 		#pragma multi_compile _ENABLE_DUNESRIPPLES_OFF _ENABLE_DUNESRIPPLES_ON
 		#pragma multi_compile _ENABLE_SANDDETAILS_OFF _ENABLE_SANDDETAILS_ON 
 		#pragma multi_compile _ENABLE_LAMBERT_OFF _ENABLE_LAMBERT_ON
@@ -258,7 +262,7 @@ Shader "Custom/Sand" {
 			// Unity function for retrieving environment light
 			UnityGI gi_macro = GetUnityGI(_LightColor0.rgb, lightDirection, macroNormalDirection, viewDirection, macroViewReflectDirection, atten, 1, pos_world.xyz);
 
-			// Light colors 
+			// Colors 
 			fixed shadow = atten;
 			float3 lightColor = _LightColor0.rgb * shadow;
 			float3 skyLight =  max(0.0, intensity(gi_macro.indirect.specular.rgb))* float3(1, 1, 1); // Only retrieve intensity and not color of environment light
@@ -267,8 +271,15 @@ Shader "Custom/Sand" {
 			float3 Kd_m = rho_m / PI;
 			float3 Kd_n = rho_n / PI;
 			float3 fresnelColor = skyLight + (lightColor * cosine_theta);
-			float3 glintsColor = lightColor * 3000; // Glints are multiplied by large value
 			float3 transmissionColor = lightColor * rho_n;
+			// Access current mip level for observer distance
+			float glintsIntensity = tex2D(_GlintMipTex, uv * _NoiseScale).x;
+			// Make glints intensity dependent on mip level
+			float3 glintsColor = lightColor * 5000 * exp(glintsIntensity * 5); // Glints are multiplied by large value dependent on observer distance
+
+			#ifdef _ENABLE_SHOWMIPLEVEL_ON
+				return float4(glintsIntensity,0,0, 1);
+			#endif
 
 			// GLINTS
 			#ifdef _ENABLE_GLINTS_ON
