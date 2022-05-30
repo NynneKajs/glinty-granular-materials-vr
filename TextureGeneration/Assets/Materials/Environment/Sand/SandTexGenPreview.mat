@@ -86,20 +86,20 @@ Material:
     - _Gs: 10.4
     - _Height: 1
     - _Mu: 2
-    - _NoiseScale: 6
-    - _NumDims: 5
+    - _NoiseScale: 8
+    - _NumDims: 7
     - _RipplesShallowFrequency: 766
     - _RipplesSteepFrequency: 163
     - _RipplesStrength: 0.053
     - _Rs: 0.849
     - _Rt: 0
     - _SSS: 0.733
-    - _SampleDistance: 0.196
+    - _SampleDistance: 0.305
     - _SandDetailsFrequency: 0.8
-    - _Sigma: 0.305
+    - _Sigma: 0.277
     - _SteepnessSharpnessPower: 0.001
     - _T: 0.045
-    - _a: 2.7
+    - _a: 2
     - _absorption: 0.1
     - _b: 0
     - _scattering: 0.075

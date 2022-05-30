@@ -7,7 +7,6 @@ Shader "Custom/Sand" {
 	_GlintTex("Glints Texture", 2D) = "white" {}
 	_GlintMipTex("Glints Mip Levels Texture", 2D) = "white" {}
 	_AverageColorTex("Average Color", 2D) = "white" {}
-	_Height("Height Scale", Range(0.5,200)) = 1
 	_SteepX("Steep X", 2D) = "bump" {}
 	_ShallowX("Shallow X", 2D) = "bump" {}
 	_SteepZ("Steep Z", 2D) = "bump" {}
@@ -275,7 +274,7 @@ Shader "Custom/Sand" {
 			// Access current mip level for observer distance
 			float glintsIntensity = tex2D(_GlintMipTex, uv * _NoiseScale).x;
 			// Make glints intensity dependent on mip level
-			float3 glintsColor = lightColor * 5000 * exp(glintsIntensity * 5); // Glints are multiplied by large value dependent on observer distance
+			float3 glintsColor = lightColor * 5000 *exp(glintsIntensity * 5); // Glints are multiplied by large value dependent on observer distance
 
 			#ifdef _ENABLE_SHOWMIPLEVEL_ON
 				return float4(glintsIntensity,0,0, 1);
@@ -285,9 +284,9 @@ Shader "Custom/Sand" {
 			#ifdef _ENABLE_GLINTS_ON
 				g = glints; // sampled glints
 				g *= cosine_theta; // only in direct light
-				g *= shadow; // not if shadowed
+				g =  shadow < 1 ? 0 : g; // not if shadowed
 				#ifdef _ENABLE_SHOWGDF_ON
-					return float4(g, g, g, 1);
+					return float4(g * glintsColor, 1);
 				#endif
 			#endif
 
