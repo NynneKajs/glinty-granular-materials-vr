@@ -83,20 +83,20 @@ Material:
     - _ENABLE_SSS: 1
     - _ENABLE_TRANSMISSION: 1
     - _ENABLE_VR: 0
-    - _Gs: 10.4
+    - _Gs: 3.3
     - _Height: 1
     - _Mu: 2
-    - _NoiseScale: 2500
+    - _NoiseScale: 2000
     - _NumDims: 3
     - _RipplesShallowFrequency: 766
     - _RipplesSteepFrequency: 200
     - _RipplesStrength: 0.133
     - _Rs: 0.849
     - _Rt: 0
-    - _SSS: 0.733
+    - _SSS: 0.772
     - _SampleDistance: 0.305
     - _SandDetailsFrequency: 0.8
-    - _Sigma: 0.238
+    - _Sigma: 0.252
     - _SteepnessSharpnessPower: 0.001
     - _T: 0.045
     - _a: 1.5

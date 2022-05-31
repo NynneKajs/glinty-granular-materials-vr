@@ -39,7 +39,7 @@ Material:
     - _RoundAmp: 0.28
     - _SampleDistance: 0.0001
     - _Seed: 0.27
-    - _Thresh: 0.3
+    - _Thresh: 0.296
     - _Weight0: 22
     - _Weight1: 18
     - _Weight2: 56
