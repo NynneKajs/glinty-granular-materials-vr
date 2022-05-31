@@ -1,0 +1,5 @@
+SandRenderingDemo/MonoBleedingEdge filter=lfs diff=lfs merge=lfs -text
+SandRenderingDemo/Sand.exe filter=lfs diff=lfs merge=lfs -text
+SandRenderingDemo/Sand_Data filter=lfs diff=lfs merge=lfs -text
+SandRenderingDemo/UnityCrashHandler64.exe filter=lfs diff=lfs merge=lfs -text
+SandRenderingDemo/UnityPlayer.dll filter=lfs diff=lfs merge=lfs -text
