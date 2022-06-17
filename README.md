@@ -3,14 +3,9 @@
 ## Description
 
 This repository contains the code behind the project for _Rendering Glinty Granular Materials in Virtual Reality_. 
-The article describing the project can be found [here](https://www.google.com/webhp?hl=da&sa=X&ved=0ahUKEwja-9SS5tn3AhVxSvEDHbrrB04QPAgI). 
 The project is implemented in Unity version 2021.2.15f1.
 The demo (SandRenderingDemo folder) has been developed for Oculus Rift and has not been tested for other versions. 
 A unity project (TextureGeneration folder) has been added that allows the user to generate sand textures in the Editor.
-
-## How to Use this Project
-
-% video will be embedded
 
 ## Assets Used
 
